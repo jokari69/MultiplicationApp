@@ -19,9 +19,15 @@ import { InputSection } from './InputSection';
 
 interface GameScreenProps {
   onExit: () => void;
+  onGameComplete: (result: {
+    score: number;
+    totalQuestions: number;
+    accuracy: number;
+    time: number;
+  }) => void;
 }
 
-export const GameScreen: React.FC<GameScreenProps> = ({ onExit }) => {
+export const GameScreen: React.FC<GameScreenProps> = ({ onExit, onGameComplete }) => {
   const [answer, setAnswer] = useState('');
   const [isGameActive, setIsGameActive] = useState(false);
   
@@ -65,15 +71,20 @@ export const GameScreen: React.FC<GameScreenProps> = ({ onExit }) => {
     setIsGameActive(false);
     stop();
     
-    Alert.alert(
-      'Game Complete!',
-      `Great job! You got ${correctAnswers} out of ${totalAnswers} correct in ${minutes}:${seconds.toString().padStart(2, '0')}`,
-      [
-        { text: 'Play Again', onPress: handleStartGame },
-        { text: 'Exit', onPress: onExit },
-      ]
-    );
-  }, [stop, correctAnswers, totalAnswers, minutes, seconds, onExit, handleStartGame]);
+    const totalTime = minutes * 60 + seconds;
+    const accuracy = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
+    
+    if (totalAnswers > 0) {
+      onGameComplete({
+        score: correctAnswers,
+        totalQuestions: totalAnswers,
+        accuracy,
+        time: totalTime,
+      });
+    } else {
+      onExit();
+    }
+  }, [stop, correctAnswers, totalAnswers, minutes, seconds, onGameComplete, onExit]);
 
   const accuracy = totalAnswers > 0 ? Math.round((correctAnswers / totalAnswers) * 100) : 0;
 

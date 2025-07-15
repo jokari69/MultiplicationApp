@@ -10,9 +10,10 @@ import {
 
 interface HomeScreenProps {
   onStartGame: () => void;
+  onShowLeaderboard: () => void;
 }
 
-export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
+export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame, onShowLeaderboard }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -43,9 +44,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ onStartGame }) => {
           <Text style={styles.instructionText}>3. Try to get as many right as possible!</Text>
         </View>
 
-        <TouchableOpacity style={styles.startButton} onPress={onStartGame}>
-          <Text style={styles.startButtonText}>Start Practice</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.startButton} onPress={onStartGame}>
+            <Text style={styles.startButtonText}>Start Practice</Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity style={styles.leaderboardButton} onPress={onShowLeaderboard}>
+            <Text style={styles.leaderboardButtonText}>🏆 Leaderboard</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -125,6 +132,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center',
   },
+  buttonContainer: {
+    width: '100%',
+    maxWidth: 400,
+    alignItems: 'center',
+  },
   startButton: {
     backgroundColor: '#4CAF50',
     paddingHorizontal: 50,
@@ -135,10 +147,30 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
     shadowRadius: 6,
+    marginBottom: 15,
+    width: '100%',
   },
   startButtonText: {
     color: 'white',
     fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  leaderboardButton: {
+    backgroundColor: '#2196F3',
+    paddingHorizontal: 40,
+    paddingVertical: 15,
+    borderRadius: 25,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    width: '100%',
+  },
+  leaderboardButtonText: {
+    color: 'white',
+    fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
   },
