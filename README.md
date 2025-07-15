@@ -1,22 +1,99 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Multiplication Table Practice App
 
-# Getting Started
+An iPad-optimized React Native app for practicing multiplication tables up to 15. Features timer functionality and score tracking to help users improve their multiplication skills.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- **Interactive Practice**: Solve multiplication problems from 1×1 to 15×15
+- **Timer Tracking**: Monitor how long you spend practicing
+- **Score Tracking**: Keep track of correct answers and accuracy
+- **iPad Optimized**: Clean, responsive UI designed for iPad use
+- **Kid-Friendly**: Simple, intuitive interface
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## How to Use
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### Running the App
 
-```sh
-# Using npm
-npm start
+1. **For iOS (iPad/iPhone)**:
+   ```bash
+   npx react-native run-ios
+   ```
 
-# OR using Yarn
-yarn start
+2. **For Android**:
+   ```bash
+   npx react-native run-android
+   ```
+
+### Playing the Game
+
+1. **Start**: Tap "Start Practice" on the home screen
+2. **Solve**: Look at the multiplication problem (e.g., 7 × 8 = ?)
+3. **Answer**: Enter your answer using the numeric keypad
+4. **Submit**: Tap the checkmark button or press Enter
+5. **Continue**: Keep solving problems to improve your score
+6. **Stop**: Tap "Stop Game" when you're done to see your results
+
+### Game Statistics
+
+The app tracks:
+- **Time**: How long you've been practicing
+- **Correct Answers**: Number of problems solved correctly
+- **Total Answers**: Total number of problems attempted
+- **Accuracy**: Percentage of correct answers
+
+## Development Setup
+
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- React Native CLI
+- iOS: Xcode (for iOS development)
+- Android: Android Studio (for Android development)
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. For iOS, install CocoaPods dependencies:
+   ```bash
+   cd ios && pod install && cd ..
+   ```
+
+### Running in Development
+
+- **iOS**: `npx react-native run-ios`
+- **Android**: `npx react-native run-android`
+- **Metro bundler**: `npx react-native start`
+
+## Project Structure
+
 ```
+src/
+├── components/
+│   ├── GameScreen.tsx      # Main game interface
+│   ├── HomeScreen.tsx      # Welcome screen
+│   ├── GameStats.tsx       # Statistics display
+│   ├── ProblemDisplay.tsx  # Shows multiplication problem
+│   └── InputSection.tsx    # Answer input field
+└── hooks/
+    ├── useTimer.ts         # Timer functionality
+    └── useGameLogic.ts     # Game logic and state
+```
+
+## Technologies Used
+
+- **React Native**: Mobile app framework
+- **TypeScript**: Type-safe JavaScript
+- **React Hooks**: State management
+- **React Native Elements**: UI components
+
+## License
+
+This project is licensed under the MIT License.
 
 ## Step 2: Build and run your app
 
